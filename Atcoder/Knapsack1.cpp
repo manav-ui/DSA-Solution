@@ -1,20 +1,28 @@
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
-void solve(){
-  int n, m;
-  cin >> n >> m;
-  int remainder = m %n;
-  int multiple = m/n;
-  for(int i = 0; i < n; i++){
-    int a = multiple ;
-    if(remainder!= 0){
-        a += 1; 
-        remainder--;
+
+using ll = long long;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, W;
+    cin >> n >> W;
+
+    vector<ll> dp(W + 1, 0);
+
+    for (int i = 0; i < n; i++) {
+        int wt, val;
+        cin >> wt >> val;
+
+        for (int w = W; w >= wt; w--) {
+            dp[w] = max(dp[w], dp[w - wt] + val);
+        }
     }
-    cout << a << endl;
-  }
-}
-int main(){
-  solve();
-  return 0;
+
+    cout << dp[W] << '\n';
+
+    return 0;
 }
