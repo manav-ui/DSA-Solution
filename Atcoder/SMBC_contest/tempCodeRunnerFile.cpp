@@ -1,0 +1,1 @@
+min_fuel[T] == INF ? (-1 : min_fuel[T])
